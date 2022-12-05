@@ -2,6 +2,10 @@
     --main-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    margin: 0;
+}
+
 .wrapper {
     width: 95%;
     max-width: 76em;
@@ -10,12 +14,26 @@
 
 
 .col {
-    display: block;
     float: left;
+    outline: 1px solid #666;
 }
 
+
+.row {
+
+    min-height: 100px;
+    outline: 1px solid #666;
+}
 
 
 .scores {
     margin-right: 50em;
+}
+
+
+.main-content {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
