@@ -1,4 +1,21 @@
-.row {
-    display:flex;
-    flex-direction: row;
+:root {
+    --main-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wrapper {
+    width: 95%;
+    max-width: 76em;
+    margin: 0 auto;
+}
+
+
+.col {
+    display: block;
+    float: left;
+}
+
+
+
+.scores {
+    margin-right: 50em;
 }
