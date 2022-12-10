@@ -25,6 +25,7 @@ headerEl1.appendChild(p1_text);
 /* Create button to start coding quiz */
 start_button = document.createElement("button");
 start_button.textContent = "Start Quiz";
+start_button.setAttribute("id", "start-quiz");
 headerEl1.appendChild(start_button);
 
 
@@ -39,15 +40,45 @@ questions = ["Statements should end with a ____.",
              "++ is known as the  ____ operator.",
              "-- is known as the ____ operator.",
              "< is known as the ____ sign.",
-             "> is know as the ___ sign.",
-             "The var keyword is used to do what?",
+             "> is know as the ____ sign.",
+             "The var keyword is used to ___?",
              "Which property is used to determine the size of an array?"];
 
 /* Define list of answers to coding questions */             
-correct_answer = ["semi-colon", "0", "datatype", "iterate", "increment",
-                  "decrement", "greater than", "less than", "declare a variable",
-                  "length" ];
+correct_answer = [";", "0", "datatype", "iterate", "increment",
+                  "decrement", "less than", "greater than", "declare a variable",
+                  "length"];
 
 /* Define list of wrong choices to coding questions */
-wrong_choices = [];
+wrong_choices = [
+                 ["}", ";", "[", "?"],
+                 ["1", "0", "-1", "@"],
+                 ["datatype", "variable", "descriptor", "entity"],
+                 ["iterate", "remove", "save", "parse"],
+                 ["increment", "decrement", "subtract", "addition"],
+                 ["decrement", "subtration", "minus", "takeaway"],
+                 ["less than", "greater than", "add-on", "stop"],
+                 ["greater than", "less than", "peace", "yield"],
+                 ["declare a variable", "index an array", "select a key in an object", "return a value"],
+                 ["size", "count", "num", "length"]
+                ];
 
+function start_quiz() {
+   
+    /* This function loops through each question and choices and displays it on 
+    on the page */
+
+    /* Create html elements */
+    OrderedListEl1 = document.createElement("ul");
+    listEl1 = document.createElement("li");
+    listEl2 = document.createElement("li");
+    listEl3 = document.createElement("li");
+    listEl4 = document.createElement("li");
+    
+    for (var i=0; i < questions.lenth; i++) {
+          
+    }
+    
+}
+
+start_button.addEventListener("click", start_quiz);
