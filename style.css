@@ -63,6 +63,11 @@ body {
 
 }
 
+#middle button {
+
+width: 160px;
+}
+
 #top button{
     text-align:center;
 }
