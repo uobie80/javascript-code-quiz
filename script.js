@@ -1,37 +1,37 @@
-/* Select specific html tags to insert dynamic content into */
+// Select specific html tags to insert dynamic content into
 var contentEl1 = document.querySelector("#top");
 var choicesEl1 = document.querySelector("#middle");
 var messageEl1 = document.querySelector("#bottom");
 var timeEl1 = document.querySelector("#time");
 
-/* Initialize time limit */
+// Initialize time limit
 time_limit = 100;
 
-/* Initialize array index for coding quesitons*/
+// Initialize array index for coding quesitons
 idx = 0;
 
-/* Create h1 tag and associated text */
+//Create h1 tag and associated text
 h1_text = document.createElement("h1");
 h1_text.textContent = "JavaScript Coding Challenge";
 contentEl1 .appendChild(h1_text);
 
-/* Create p tag and add text to it */
+// Create p tag and add text to it
 p1_text = document.createElement("p");
 p1_text.textContent = "Try to answer the following code related questions within the time limit.\
                        Keep in mind that incorrect answers will be penalize your score/time by ten seconds!";
 contentEl1.appendChild(p1_text);
 
-/* Create button to start coding quiz */
+// Create button to start coding quiz
 start_button = document.createElement("button");
 start_button.textContent = "Start Quiz";
 start_button.setAttribute("id", "start-quiz");
 contentEl1.appendChild(start_button);
 
 
-/* Set the quiz timer */
+// initialize the quiz timer
 timeEl1.textContent = time_limit;
 
-/* Define list of questions to present to the user */
+// Define list of questions to present to the user
 questions = ["Statements should end with a ____.",
              "Array indices start at  ____.",
              "A number is a ____ in Javascript.",
@@ -43,12 +43,12 @@ questions = ["Statements should end with a ____.",
              "The var keyword is used to ___?",
              "Which property is used to determine the size of an array?"];
 
-/* Define list of answers to coding questions */             
+// Define list of answers to coding questions         
 correct_answers = [";", "0", "datatype", "iterate", "increment",
                   "decrement", "less than", "greater than", "declare a variable",
                   "length"];
 
-/* Define list of wrong choices to coding questions */
+// Define list of choices to coding questions
      choices = [
                  ["curly brace", "semi-colon", "bracket", "question mark"],
                  ["1", "0", "-1", "@"],
@@ -62,7 +62,7 @@ correct_answers = [";", "0", "datatype", "iterate", "increment",
                  ["size", "count", "num", "length"]
                 ];
 
-/* Create html elements */
+// Create button elements
 buttonEl1 = document.createElement("button");
 buttonEl2 = document.createElement("button");
 buttonEl3 = document.createElement("button");
@@ -75,6 +75,11 @@ function increment_index() {
     start_quiz();
 }
 
+
+function display_results() {
+    return;
+}
+
 function start_quiz() {
    
     /* 
@@ -82,45 +87,51 @@ function start_quiz() {
        and choices and displays it on the page. 
     */
 
+// Select html element
+if (idx <= questions.length) {
+    
+    // Get next question
+    var question = questions[idx];
+    p0 = document.createElement("p");
 
-p0 = document.createElement("p");
+    contentEl1.textContent = "";
+    choicesEl1.innerHTML = "";
 
-/* Select html element */
+    // Add question into p element
+    p0.textContent = question;
 
-var question = questions[idx];
-p0.textContent = question;
+    //
+    contentEl1.appendChild(p0);
 
-contentEl1.textContent = "";
-choicesEl1.innerHTML = "";
-contentEl1.appendChild(p0);
+    // Get choices 
+    var choice = choices[idx];
 
+    // Set choices as content for list items
+    buttonEl1.textContent = "1.   " + choice[3];
+    buttonEl2.textContent = "2.   " + choice[2];
+    buttonEl3.textContent = "3.   " + choice[1];
+    buttonEl4.textContent = "4.   " + choice[0];
 
+    // Create p tag and add elements to it
+    p1 = document.createElement("p");
+    p2 = document.createElement("p");
+    p3 = document.createElement("p");
+    p4 = document.createElement("p");
 
-/* Get choices */
-var choice = choices[idx];
+    p1.appendChild(buttonEl1);
+    p2.appendChild(buttonEl2);
+    p3.appendChild(buttonEl3);
+    p4.appendChild(buttonEl4);
 
-/* Set choices as content for list items */
-buttonEl1.textContent = "1.   " + choice[3];
-buttonEl2.textContent = "2.   " + choice[2];
-buttonEl3.textContent = "3.   " + choice[1];
-buttonEl4.textContent = "4.   " + choice[0];
+    choicesEl1.appendChild(p1);
+    choicesEl1.appendChild(p2);
+    choicesEl1.appendChild(p3);
+    choicesEl1.appendChild(p4);
+  } else {
+   
+    display_results();
 
-/* Create p tag and add elements to it */
-p1 = document.createElement("p");
-p2 = document.createElement("p");
-p3 = document.createElement("p");
-p4 = document.createElement("p");
-
-
-p1.appendChild(buttonEl1);
-p2.appendChild(buttonEl2);
-p3.appendChild(buttonEl3);
-p4.appendChild(buttonEl4);
-
-choicesEl1.appendChild(p1);
-choicesEl1.appendChild(p2);
-choicesEl1.appendChild(p3);
-choicesEl1.appendChild(p4);
+  }
 
 }
 
