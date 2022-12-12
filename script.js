@@ -25,7 +25,7 @@ contentEl1.appendChild(p1_text);
 start_button = document.createElement("button");
 start_button.textContent = "Start Quiz";
 start_button.setAttribute("id", "start-quiz");
-contentEl1 .appendChild(start_button);
+contentEl1.appendChild(start_button);
 
 
 /* Set the quiz timer */
@@ -62,6 +62,19 @@ correct_answers = [";", "0", "datatype", "iterate", "increment",
                  ["size", "count", "num", "length"]
                 ];
 
+/* Create html elements */
+buttonEl1 = document.createElement("button");
+buttonEl2 = document.createElement("button");
+buttonEl3 = document.createElement("button");
+buttonEl4 = document.createElement("button");
+
+
+
+function increment_index() {
+    idx++;
+    start_quiz();
+}
+
 function start_quiz() {
    
     /* 
@@ -78,13 +91,10 @@ var question = questions[idx];
 p0.textContent = question;
 
 contentEl1.textContent = "";
+choicesEl1.innerHTML = "";
 contentEl1.appendChild(p0);
 
-/* Create html elements */
-buttonEl1 = document.createElement("button");
-buttonEl2 = document.createElement("button");
-buttonEl3 = document.createElement("button");
-buttonEl4 = document.createElement("button");
+
 
 /* Get choices */
 var choice = choices[idx];
@@ -112,9 +122,11 @@ choicesEl1.appendChild(p2);
 choicesEl1.appendChild(p3);
 choicesEl1.appendChild(p4);
 
-idx++;
-
 }
 
 
 start_button.addEventListener("click", start_quiz);
+buttonEl1.addEventListener("click", increment_index);
+buttonEl2.addEventListener("click", increment_index);
+buttonEl3.addEventListener("click", increment_index);
+buttonEl4.addEventListener("click", increment_index);
