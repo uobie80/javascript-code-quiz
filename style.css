@@ -19,7 +19,7 @@ body {
 }
 
 
-.row {
+.row, .main-content {
 
     min-height: 100px;
     outline: 1px solid #666;
@@ -33,9 +33,42 @@ body {
 
 
 .main-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding-left: 320px;
+    padding-right: 320px;   
+}
+
+#top {
     text-align: center;
-   
+}
+
+#middle {
+
+    text-align: left;
+    padding-left: 138px;
+}
+
+
+#middle p {
+    margin-top: 2px;
+}
+
+#top button, #middle button {
+    width: 130px;
+    height: 30px;
+    text-align: left;
+    border-radius: 8px;
+    border-width: 1px;
+    background-color: rgba(166, 6, 166, 0.736);
+    color: #fff;
+
+}
+
+#top button{
+    text-align:center;
+}
+
+
+#top button:hover, #middle button:hover {
+
+    background-color:rgba(166, 6, 166, 50%)
 }

@@ -1,10 +1,14 @@
 /* Select specific html tags to insert dynamic content into */
-var contentEl1 = document.querySelector("#header");
+var contentEl1 = document.querySelector("#top");
+var choicesEl1 = document.querySelector("#middle");
+var messageEl1 = document.querySelector("#bottom");
 var timeEl1 = document.querySelector("#time");
 
 /* Initialize time limit */
 time_limit = 100;
 
+/* Initialize array index for coding quesitons*/
+idx = 0;
 
 /* Create h1 tag and associated text */
 h1_text = document.createElement("h1");
@@ -15,7 +19,7 @@ contentEl1 .appendChild(h1_text);
 p1_text = document.createElement("p");
 p1_text.textContent = "Try to answer the following code related questions within the time limit.\
                        Keep in mind that incorrect answers will be penalize your score/time by ten seconds!";
-contentEl1 .appendChild(p1_text);
+contentEl1.appendChild(p1_text);
 
 /* Create button to start coding quiz */
 start_button = document.createElement("button");
@@ -46,7 +50,7 @@ correct_answers = [";", "0", "datatype", "iterate", "increment",
 
 /* Define list of wrong choices to coding questions */
      choices = [
-                 ["}", ";", "[", "?"],
+                 ["curly brace", "semi-colon", "bracket", "question mark"],
                  ["1", "0", "-1", "@"],
                  ["datatype", "variable", "descriptor", "entity"],
                  ["iterate", "remove", "save", "parse"],
@@ -65,37 +69,50 @@ function start_quiz() {
        and choices and displays it on the page. 
     */
 
-/* Initialize array index for coding quesitons*/
-idx = 0;
+
+p0 = document.createElement("p");
 
 /* Select html element */
-var contentEl1 = document.querySelector("#header");
+
 var question = questions[idx];
-contentEl1.textContent = question;
+p0.textContent = question;
+
+contentEl1.textContent = "";
+contentEl1.appendChild(p0);
 
 /* Create html elements */
-OrderedListEl1 = document.createElement("ol");
-listEl1 = document.createElement("li");
-listEl2 = document.createElement("li");
-listEl3 = document.createElement("li");
-listEl4 = document.createElement("li");
+buttonEl1 = document.createElement("button");
+buttonEl2 = document.createElement("button");
+buttonEl3 = document.createElement("button");
+buttonEl4 = document.createElement("button");
 
 /* Get choices */
 var choice = choices[idx];
 
 /* Set choices as content for list items */
-listEl1.textContent = choice[3];
-listEl2.textContent = choice[2];
-listEl3.textContent = choice[0];
-listEl4.textContent = choice[1];
+buttonEl1.textContent = "1.   " + choice[3];
+buttonEl2.textContent = "2.   " + choice[2];
+buttonEl3.textContent = "3.   " + choice[1];
+buttonEl4.textContent = "4.   " + choice[0];
 
-/* Add list items to ordered list */
-OrderedListEl1.appendChild(listEl1);
-OrderedListEl1.appendChild(listEl2);
-OrderedListEl1.appendChild(listEl3);
-OrderedListEl1.appendChild(listEl4);
+/* Create p tag and add elements to it */
+p1 = document.createElement("p");
+p2 = document.createElement("p");
+p3 = document.createElement("p");
+p4 = document.createElement("p");
 
-contentEl1.appendChild(OrderedListEl1);
+
+p1.appendChild(buttonEl1);
+p2.appendChild(buttonEl2);
+p3.appendChild(buttonEl3);
+p4.appendChild(buttonEl4);
+
+choicesEl1.appendChild(p1);
+choicesEl1.appendChild(p2);
+choicesEl1.appendChild(p3);
+choicesEl1.appendChild(p4);
+
+idx++;
 
 }
 
