@@ -73,7 +73,6 @@ buttonEl3 = document.createElement("button");
 buttonEl4 = document.createElement("button");
 
 
-
 function increment_index() {
     idx++;
     start_quiz();
@@ -92,7 +91,7 @@ function start_quiz() {
     */
 
 // Select html element
-if (idx <= questions.length) {
+if (idx < questions.length) {
     
     // Get next question
     var question = questions[idx];
@@ -102,7 +101,7 @@ if (idx <= questions.length) {
     choicesEl1.innerHTML = "";
 
     // Add question into <p> element
-    p0.textContent = question;
+    p0.textContent =`${idx + 1}` + ". "  + question;
 
     //Add <p> element to page
     contentEl1.appendChild(p0);
