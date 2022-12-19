@@ -5,24 +5,26 @@ var messageEl1 = document.querySelector("#bottom");
 var timeEl1 = document.querySelector("#time");
 
 // Initialize time limit
-time_limit = 100;
+var time_limit = 100;
+
+var timer = null;
 
 // Initialize array index for coding quesitons
-idx = 0;
+var idx = 0;
 
 //Create <h1> element and associated text
-h1_text = document.createElement("h1");
+var h1_text = document.createElement("h1");
 h1_text.textContent = "JavaScript Coding Challenge";
 contentEl1 .appendChild(h1_text);
 
 // Create <p> element and add text to it
-p1_text = document.createElement("p");
+var p1_text = document.createElement("p");
 p1_text.textContent = "Try to answer the following code related questions within the time limit.\
                        Keep in mind that incorrect answers will be penalize your score/time by ten seconds!";
 contentEl1.appendChild(p1_text);
 
 // Create button to start coding quiz
-start_button = document.createElement("button");
+var start_button = document.createElement("button");
 start_button.textContent = "Start Quiz";
 start_button.setAttribute("id", "start-quiz");
 contentEl1.appendChild(start_button);
@@ -32,7 +34,7 @@ contentEl1.appendChild(start_button);
 timeEl1.textContent = time_limit;
 
 // Define list of questions to present to the user
-questions = [
+var questions = [
              "Statements should end with a ____.",
              "Array indices start at  ____.",
              "A number is a ____ in Javascript.",
@@ -46,14 +48,14 @@ questions = [
             ];
 
 // Define list of answers to coding questions         
-correct_answers = [
+var correct_answers = [
                    ";", "0", "datatype", "iterate", "increment",
                    "decrement", "less than", "greater than", "declare a variable",
                    "length"
                   ];
 
 // Define list of choices to coding questions
-     choices = [
+var choices = [
                  ["curly brace", "semi-colon", "bracket", "question mark"],
                  ["1", "0", "-1", "@"],
                  ["datatype", "variable", "descriptor", "entity"],
@@ -66,36 +68,47 @@ correct_answers = [
                  ["size", "count", "num", "length"]
                 ];
 
-// Create <button> elements
-buttonEl1 = document.createElement("button");
-buttonEl2 = document.createElement("button");
-buttonEl3 = document.createElement("button");
-buttonEl4 = document.createElement("button");
 
 
-function increment_index() {
+
+var check_selected_choice = function (e) {
+
+    selected_choice = e.target;
+    console.log(selected_choice);
     idx++;
-    start_quiz();
+    show_question_and_choices();
 }
 
 
-function display_results() {
+var display_results = function () {
     return;
 }
 
-function start_quiz() {
+var show_question_and_choices = function () {
    
     /* 
        This function loops through each question 
        and choices and displays it on the page. 
     */
 
+// Create <button> elements
+var buttonEl1 = document.createElement("button");
+var buttonEl2 = document.createElement("button");
+var buttonEl3 = document.createElement("button");
+var buttonEl4 = document.createElement("button");
+
+// Create <p> elements
+var p1 = document.createElement("p");
+var p2 = document.createElement("p");
+var p3 = document.createElement("p");
+var p4 = document.createElement("p");
+
 // Select html element
 if (idx < questions.length) {
     
-    // Get next question
-    var question = questions[idx];
-    p0 = document.createElement("p");
+    var question = questions[idx];    // Get next question
+    var p0 = document.createElement("p");
+    var choice = choices[idx];      // Get choices 
 
     contentEl1.textContent = "";
     choicesEl1.innerHTML = "";
@@ -106,20 +119,12 @@ if (idx < questions.length) {
     //Add <p> element to page
     contentEl1.appendChild(p0);
 
-    // Get choices 
-    var choice = choices[idx];
 
     // Set choices as content for each <button> element
     buttonEl1.textContent = "1.   " + choice[3];
     buttonEl2.textContent = "2.   " + choice[2];
     buttonEl3.textContent = "3.   " + choice[1];
     buttonEl4.textContent = "4.   " + choice[0];
-
-    // Create <p> elements
-    p1 = document.createElement("p");
-    p2 = document.createElement("p");
-    p3 = document.createElement("p");
-    p4 = document.createElement("p");
 
     // Add each button to a <p> element
     p1.appendChild(buttonEl1);
@@ -132,6 +137,13 @@ if (idx < questions.length) {
     choicesEl1.appendChild(p2);
     choicesEl1.appendChild(p3);
     choicesEl1.appendChild(p4);
+
+    // Invoke check_selected_choice function when one of the choices is clicked
+    buttonEl1.addEventListener("click", check_selected_choice);
+    buttonEl2.addEventListener("click", check_selected_choice);
+    buttonEl3.addEventListener("click", check_selected_choice);
+    buttonEl4.addEventListener("click", check_selected_choice);
+    
   } else {
    
     display_results();
@@ -140,11 +152,23 @@ if (idx < questions.length) {
 
 }
 
-// Invoke start_quiz function when the start_quiz button is clicked
-start_button.addEventListener("click", start_quiz);
+ var decrement_timer = function () {
+  /*
+   This function decrements the timer for the quiz
+  */
+  if (parseInt(time_limit) < 1 ) {
+    window.clearInterval(timer);
+  } else {
+    time_limit--;
+    timeEl1.textContent = time_limit;
+ }
+}
 
-// Invoke increment_index function when one of the choices is clicked
-buttonEl1.addEventListener("click", increment_index);
-buttonEl2.addEventListener("click", increment_index);
-buttonEl3.addEventListener("click", increment_index);
-buttonEl4.addEventListener("click", increment_index);
+
+// Invoke start_quiz function when the start_quiz button is clicked
+start_button.addEventListener("click", function(e) {
+  check_selected_choice(e);
+  timer = window.setInterval(decrement_timer, 1000);
+});
+
+
