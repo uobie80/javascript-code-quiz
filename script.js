@@ -12,6 +12,9 @@ var timer = null;
 // Initialize array index for coding quesitons
 var idx = 0;
 
+//initialize quiz score
+var score = 0;
+
 //Create <h1> element and associated text
 var h1_text = document.createElement("h1");
 h1_text.textContent = "JavaScript Coding Challenge";
@@ -74,16 +77,32 @@ var clear_message = function () {
 
 var check_selected_choice = function (e) {
   
+var increase_score = function () {
+  if (score < 100) {
+     score = score + 10;
+  }
+}
 
+var decrease_score = function () {
+
+  if (score < 10 ) {
+     score = 0;
+  }
+  else {
+    score = score - 10;
+  }
+}
     
     selected_choice = e.target.textContent.split(".")[1].trim();
     console.log(selected_choice);
     if (selected_choice === correct_answers[idx]){
       messageEl1.textContent = "CORRECT!";
+      increase_score();
     } else {
       messageEl1.textContent = "WRONG!";
+      decrease_score();
     }
-
+  
     idx++;
     buttonEl1.removeEventListener("click", check_selected_choice); 
     buttonEl2.removeEventListener("click", check_selected_choice);
