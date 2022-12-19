@@ -35,46 +35,50 @@ timeEl1.textContent = time_limit;
 
 // Define list of questions to present to the user
 var questions = [
-             "Statements should end with a ____.",
-             "Array indices start at  ____.",
-             "A number is a ____ in Javascript.",
-             "A for loop is used to ____ through a collection.",
-             "++ is known as the  ____ operator.",
-             "-- is known as the ____ operator.",
-             "< is known as the ____ sign.",
-             "> is know as the ____ sign.",
-             "The var keyword is used to ___?",
-             "Which property is used to determine the size of an array?"
-            ];
+                  "Statements should end with a ____.",
+                  "Array indices start at  ____.",
+                  "A number is a ____ in Javascript.",
+                  "A for loop is used to ____ through a collection.",
+                  "++ is known as the  ____ operator.",
+                  "-- is known as the ____ operator.",
+                  "< is known as the ____ sign.",
+                  "> is know as the ____ sign.",
+                  "The var keyword is used to ___?",
+                  "Which property is used to determine the size of an array?"
+                ];
 
 // Define list of answers to coding questions         
 var correct_answers = [
-                   ";", "0", "datatype", "iterate", "increment",
-                   "decrement", "less than", "greater than", "declare a variable",
-                   "length"
-                  ];
+                        "semi-colon", "0", "datatype", "iterate", "increment",
+                        "decrement", "less than", "greater than", "declare a variable",
+                        "length"
+                      ];
 
 // Define list of choices to coding questions
 var choices = [
-                 ["curly brace", "semi-colon", "bracket", "question mark"],
-                 ["1", "0", "-1", "@"],
-                 ["datatype", "variable", "descriptor", "entity"],
-                 ["iterate", "remove", "save", "parse"],
-                 ["increment", "decrement", "subtract", "addition"],
-                 ["decrement", "subtration", "minus", "takeaway"],
-                 ["less than", "greater than", "add-on", "stop"],
-                 ["greater than", "less than", "peace", "yield"],
-                 ["declare a variable", "index an array", "define object key", "return a value"],
-                 ["size", "count", "num", "length"]
-                ];
-
-
+                ["curly brace", "semi-colon", "bracket", "question mark"],
+                ["1", "0", "-1", "@"],
+                ["datatype", "variable", "descriptor", "entity"],
+                ["iterate", "remove", "save", "parse"],
+                ["increment", "decrement", "subtract", "addition"],
+                ["decrement", "subtration", "minus", "takeaway"],
+                ["less than", "greater than", "add-on", "stop"],
+                ["greater than", "less than", "peace", "yield"],
+                ["declare a variable", "index an array", "define object key", "return a value"],
+                ["size", "count", "num", "length"]
+              ];
 
 
 var check_selected_choice = function (e) {
 
-    selected_choice = e.target;
-    console.log(selected_choice);
+    selected_choice = e.target.textContent.split(".")[1].trim();
+ 
+    if (selected_choice === correct_answers[idx]){
+      messageEl1.textContent = "CORRECT!";
+    }else {
+      messageEl1.textContent = "WRONG!";
+    }
+
     idx++;
     show_question_and_choices();
 }
@@ -105,7 +109,7 @@ var p4 = document.createElement("p");
 
 // Select html element
 if (idx < questions.length) {
-    
+
     var question = questions[idx];    // Get next question
     var p0 = document.createElement("p");
     var choice = choices[idx];      // Get choices 
@@ -166,8 +170,8 @@ if (idx < questions.length) {
 
 
 // Invoke start_quiz function when the start_quiz button is clicked
-start_button.addEventListener("click", function(e) {
-  check_selected_choice(e);
+start_button.addEventListener("click", function() {
+  show_question_and_choices();
   timer = window.setInterval(decrement_timer, 1000);
 });
 
