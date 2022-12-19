@@ -68,19 +68,33 @@ var choices = [
                 ["size", "count", "num", "length"]
               ];
 
+var clear_message = function () {
+  messageEl1.textContent = "";
+}
 
 var check_selected_choice = function (e) {
+  
 
+    
     selected_choice = e.target.textContent.split(".")[1].trim();
- 
+    console.log(selected_choice);
     if (selected_choice === correct_answers[idx]){
       messageEl1.textContent = "CORRECT!";
-    }else {
+    } else {
       messageEl1.textContent = "WRONG!";
     }
 
     idx++;
-    show_question_and_choices();
+    buttonEl1.removeEventListener("click", check_selected_choice); 
+    buttonEl2.removeEventListener("click", check_selected_choice);
+    buttonEl3.removeEventListener("click", check_selected_choice);
+    buttonEl4.removeEventListener("click", check_selected_choice);
+
+    window.setTimeout( () => {
+      show_question_and_choices();
+      clear_message();
+    }, 3000);
+
 }
 
 
@@ -96,10 +110,10 @@ var show_question_and_choices = function () {
     */
 
 // Create <button> elements
-var buttonEl1 = document.createElement("button");
-var buttonEl2 = document.createElement("button");
-var buttonEl3 = document.createElement("button");
-var buttonEl4 = document.createElement("button");
+buttonEl1 = document.createElement("button");
+buttonEl2 = document.createElement("button");
+buttonEl3 = document.createElement("button");
+buttonEl4 = document.createElement("button");
 
 // Create <p> elements
 var p1 = document.createElement("p");
@@ -147,6 +161,7 @@ if (idx < questions.length) {
     buttonEl2.addEventListener("click", check_selected_choice);
     buttonEl3.addEventListener("click", check_selected_choice);
     buttonEl4.addEventListener("click", check_selected_choice);
+
     
   } else {
    
@@ -157,9 +172,11 @@ if (idx < questions.length) {
 }
 
  var decrement_timer = function () {
+ 
   /*
    This function decrements the timer for the quiz
   */
+
   if (parseInt(time_limit) < 1 ) {
     window.clearInterval(timer);
   } else {
